@@ -3,14 +3,6 @@ import { render } from "react-dom";
 import PropTypes from "prop-types";
 
 class Counter extends React.Component {
-    static propTypes: {
-        incrementBy: PropTypes.number,
-        onIncrement: PropTypes.func.isRequired
-    };
-
-    static defaultProps: {
-        incrementBy: 1
-    };
     
     constructor(props) {
         super(props);
@@ -21,9 +13,18 @@ class Counter extends React.Component {
         this.onButtonClick = this.onButtonClick.bind(this);
     }
 
+    static propTypes = {
+        incrementBy: PropTypes.number,
+        onIncrement: PropTypes.func.isRequired //#B
+      };
+
+    static defaultProps = {
+        incrementBy: 1
+    };
+
     onButtonClick() {
         this.setState(function(prevState, props) {
-            return { count: prevState + props.incrementBy };
+            return { count: prevState.count + props.incrementBy };
         });
     }
 
